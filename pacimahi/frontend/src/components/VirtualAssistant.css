@@ -1,0 +1,320 @@
+/* ============================================
+   Virtual Assistant (SAPA) Styles
+   ============================================ */
+.virtual-assistant {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 1500;
+}
+
+/* Floating Trigger Button */
+.va-floating-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+  color: var(--primary-950);
+  border: none;
+  padding: 14px 24px;
+  border-radius: var(--radius-full);
+  font-size: 0.92rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+.va-floating-btn:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 35px rgba(212, 175, 55, 0.45);
+  background: var(--gold-400);
+}
+
+.va-btn-icon {
+  font-size: 1.2rem;
+}
+
+.va-btn-pulse {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 14px;
+  height: 14px;
+  background: #22c55e;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+/* Chatbox Window */
+.va-chatbox {
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  height: 540px;
+  max-height: calc(100vh - 100px);
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+}
+
+/* Header */
+.va-chatbox__header {
+  background: linear-gradient(135deg, var(--primary-900), var(--primary-800));
+  color: white;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.va-header-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.va-avatar {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.va-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: white;
+  margin: 0;
+}
+
+.va-status {
+  font-size: 0.72rem;
+  color: var(--gold-300);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.va-close-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.va-close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg);
+}
+
+/* Chat Body */
+.va-chatbox__body {
+  flex: 1;
+  padding: 1.25rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--gray-50);
+}
+
+.va-msg {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.va-msg--bot {
+  align-self: flex-start;
+}
+
+.va-msg--user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.va-msg__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary-700);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.va-msg--user .va-msg__icon {
+  background: var(--gray-600);
+}
+
+.va-msg__bubble {
+  max-width: 260px;
+  padding: 10px 14px;
+  border-radius: var(--radius-lg);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.va-msg--bot .va-msg__bubble {
+  background: white;
+  color: var(--gray-800);
+  border: 1px solid var(--gray-200);
+  border-bottom-left-radius: 2px;
+  box-shadow: var(--shadow-sm);
+}
+
+.va-msg--user .va-msg__bubble {
+  background: linear-gradient(135deg, var(--primary-800), var(--primary-700));
+  color: white;
+  border-bottom-right-radius: 2px;
+}
+
+/* FAQs */
+.va-faqs {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--gray-200);
+}
+
+.va-faqs__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gray-500);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.va-faqs__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.va-faq-pill {
+  background: white;
+  border: 1px solid var(--primary-200);
+  color: var(--primary-900);
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.va-faq-pill:hover {
+  background: var(--primary-50);
+  border-color: var(--primary-500);
+  color: var(--primary-700);
+  transform: translateX(3px);
+}
+
+/* Footer Form */
+.va-chatbox__footer {
+  padding: 1rem;
+  background: white;
+  border-top: 1px solid var(--gray-200);
+}
+
+.va-input-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.va-input {
+  flex: 1;
+  padding: 10px 14px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-full);
+  font-size: 0.84rem;
+  color: var(--gray-800);
+  outline: none;
+}
+
+.va-input:focus {
+  border-color: var(--primary-500);
+  background: white;
+}
+
+.va-send-btn {
+  width: 38px;
+  height: 38px;
+  background: var(--primary-700);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.va-send-btn:hover {
+  background: var(--primary-800);
+  transform: scale(1.05);
+}
+
+/* WhatsApp helper */
+.va-whatsapp-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--gray-500);
+  padding-top: 8px;
+  border-top: 1px solid var(--gray-100);
+}
+
+.va-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #15803d;
+  font-weight: 700;
+  text-decoration: none;
+  background: #dcfce7;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.va-wa-btn:hover {
+  background: #bbf7d0;
+}
