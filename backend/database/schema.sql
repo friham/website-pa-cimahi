@@ -88,7 +88,7 @@ ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value);
 
 -- Default admin (password: admin123)
 INSERT INTO admins (username, password, name, email, role) VALUES
-('admin', '$2b$10$Xou5n6kpzj9v1pyC731sZuunGHqSc8mvHwgrXiIatMPzDVDrKc.5G', 'Administrator', 'admin@pa-cimahi.go.id', 'superadmin');
+('admin', '$2b$10$M0aPgOC.xoRQEAPfq0ZiReFRxWayIpNoiIDc19mOBa0aF7QZVCZDW', 'Administrator', 'admin@pa-cimahi.go.id', 'superadmin');
 
 -- Default services
 INSERT INTO services (name, icon, description, link, sort_order) VALUES
