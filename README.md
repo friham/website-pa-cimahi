@@ -1,0 +1,167 @@
+# 🏛️ Website PA Cimahi
+
+Website resmi **Pengadilan Agama Cimahi** — sistem informasi berbasis web fullstack dengan fitur manajemen konten (CMS), berita, layanan, dokumen, dan halaman publik.
+
+---
+
+## 🧱 Tech Stack
+
+| Layer     | Teknologi                                  |
+|-----------|--------------------------------------------|
+| Frontend  | React 19, Vite, React Router DOM, Axios    |
+| Backend   | Node.js, Express 5, MySQL2, Multer, JWT    |
+| Database  | MySQL                                      |
+| Auth      | JWT (JSON Web Token) + bcryptjs            |
+| Styling   | CSS (Vanilla)                              |
+
+---
+
+## 📁 Struktur Proyek
+
+```
+pacimahi/
+├── backend/               # REST API Server (Node.js + Express)
+│   ├── config/            # Konfigurasi database
+│   ├── controllers/       # Logic handler setiap route
+│   ├── database/          # Skema / migrasi database
+│   ├── middleware/        # Auth middleware (JWT)
+│   ├── public/            # File statis (gambar, dokumen upload)
+│   │   ├── images/
+│   │   └── documents/
+│   ├── routes/            # Definisi API routes
+│   ├── .env.example       # Contoh environment variables
+│   ├── package.json
+│   └── server.js          # Entry point server
+│
+└── frontend/              # React App (Vite)
+    ├── public/
+    ├── src/
+    │   ├── assets/
+    │   ├── components/    # Komponen reusable
+    │   ├── context/       # React Context (auth, dll)
+    │   ├── pages/         # Halaman-halaman aplikasi
+    │   ├── App.jsx        # Root component + routing
+    │   └── main.jsx       # Entry point React
+    ├── index.html
+    └── package.json
+```
+
+---
+
+## ⚙️ Cara Menjalankan Proyek
+
+### Prasyarat
+- **Node.js** v18 atau lebih baru
+- **MySQL** (lokal atau cloud)
+- **npm** atau **yarn**
+
+---
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/<username>/<repo-name>.git
+cd pacimahi
+```
+
+---
+
+### 2. Setup Backend
+
+```bash
+cd backend
+npm install
+```
+
+Buat file `.env` di dalam folder `backend/`:
+
+```bash
+cp .env.example .env
+```
+
+Lalu isi file `.env` sesuai konfigurasi lokal kamu:
+
+```env
+# Server
+PORT=5000
+NODE_ENV=development
+
+# Database
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=your_password_here
+DB_NAME=pa_cimahi_db
+
+# JWT
+JWT_SECRET=your_super_secret_key_here
+JWT_EXPIRES_IN=24h
+```
+
+Import database (jika ada file SQL di folder `database/`):
+
+```bash
+mysql -u root -p pa_cimahi_db < backend/database/schema.sql
+```
+
+Jalankan server:
+
+```bash
+# Development (dengan nodemon)
+npm run dev
+
+# Production
+npm start
+```
+
+Server berjalan di: `http://localhost:5000`
+
+---
+
+### 3. Setup Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend berjalan di: `http://localhost:5173`
+
+---
+
+## 🔗 API Endpoints Utama
+
+| Method | Endpoint              | Keterangan           |
+|--------|-----------------------|----------------------|
+| GET    | `/api/health`         | Health check server  |
+| POST   | `/api/auth/login`     | Login user           |
+| GET    | `/api/sliders`        | Data slider          |
+| GET    | `/api/services`       | Data layanan         |
+| GET    | `/api/news`           | Data berita          |
+| GET    | `/api/pages`          | Data halaman         |
+| GET    | `/api/menus`          | Data menu navigasi   |
+| GET    | `/api/documents`      | Data dokumen         |
+| GET    | `/api/audit-logs`     | Log aktivitas admin  |
+
+---
+
+## 🔐 Environment Variables
+
+Salin `.env.example` dan sesuaikan nilainya. **Jangan pernah commit file `.env` ke GitHub!**
+
+```bash
+cp backend/.env.example backend/.env
+```
+
+---
+
+## 👤 Author
+
+Dibuat dalam rangka **Kerja Praktik (KP)** di Pengadilan Agama Cimahi.
+
+---
+
+## 📄 Lisensi
+
+Proyek ini dibuat untuk keperluan instansi. Hak cipta © 2024 PA Cimahi.

@@ -1,0 +1,130 @@
+/* ========================================================
+   Kesekretariatan Layout & Page Styles
+   ======================================================== */
+
+.kesekretariatan-page-wrapper {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero Section */
+.kesekretariatan-hero {
+  background: linear-gradient(135deg, #1b5e20 0%, #0d3813 100%);
+  color: #ffffff;
+  padding: 120px 24px 48px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.kesekretariatan-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.kesekretariatan-hero__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.kesekretariatan-breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  margin-bottom: 16px;
+}
+
+.kesekretariatan-breadcrumbs a {
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.kesekretariatan-breadcrumbs a:hover {
+  color: #d4af37;
+}
+
+.kesekretariatan-breadcrumbs .sep {
+  color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+}
+
+.kesekretariatan-breadcrumbs .current {
+  color: #d4af37;
+  font-weight: 600;
+}
+
+.kesekretariatan-hero__title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px 0;
+  color: #ffffff;
+  line-height: 1.25;
+}
+
+.kesekretariatan-hero__subtitle {
+  font-size: 1.05rem;
+  color: #94a3b8;
+  max-width: 800px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Layout Body Grid */
+.kesekretariatan-body-container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 36px auto 60px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Left Sidebar */
+.kesekretariatan-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.kesekretariatan-content-area {
+  min-width: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .kesekretariatan-body-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin: 24px auto 48px;
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .kesekretariatan-hero {
+    padding: 100px 16px 36px;
+  }
+  .kesekretariatan-hero__title {
+    font-size: 1.65rem;
+  }
+}
