@@ -293,114 +293,128 @@ input, select, textarea {
    ============================================ */
 
 /* 1. Dyslexia Friendly Font */
-html[data-a11y-dyslexia-font="true"],
-html[data-a11y-dyslexia-font="true"] body,
-html[data-a11y-dyslexia-font="true"] * {
+html[data-a11y-dyslexia-font="true"] *:not(.a11y-widget-root *):not(i):not(svg):not(path) {
   font-family: 'Lexend', 'Comic Neue', sans-serif !important;
   letter-spacing: 0.03em;
 }
 
 /* 2. Text Sizing */
 html[data-a11y-text-size="120"] {
-  font-size: 115%;
+  font-size: 115% !important;
 }
 html[data-a11y-text-size="140"] {
-  font-size: 130%;
+  font-size: 130% !important;
 }
 html[data-a11y-text-size="160"] {
-  font-size: 145%;
+  font-size: 145% !important;
 }
 
 /* 3. Line Height */
-html[data-a11y-line-height="1.8"] *:not(.a11y-modal *):not(.va-chatbox *) {
+html[data-a11y-line-height="1.8"] *:not(.a11y-widget-root *):not(.va-chatbox *) {
   line-height: 1.85 !important;
 }
-html[data-a11y-line-height="2.2"] *:not(.a11y-modal *):not(.va-chatbox *) {
+html[data-a11y-line-height="2.2"] *:not(.a11y-widget-root *):not(.va-chatbox *) {
   line-height: 2.2 !important;
 }
 
 /* 4. Letter Spacing */
-html[data-a11y-letter-spacing="2"] *:not(.a11y-modal *):not(.va-chatbox *) {
+html[data-a11y-letter-spacing="2"] *:not(.a11y-widget-root *):not(.va-chatbox *) {
   letter-spacing: 2px !important;
 }
-html[data-a11y-letter-spacing="4"] *:not(.a11y-modal *):not(.va-chatbox *) {
+html[data-a11y-letter-spacing="4"] *:not(.a11y-widget-root *):not(.va-chatbox *) {
   letter-spacing: 4px !important;
 }
 
 /* 5. Text Alignment */
-html[data-a11y-text-align="left"] p,
-html[data-a11y-text-align="left"] span,
-html[data-a11y-text-align="left"] h1,
-html[data-a11y-text-align="left"] h2,
-html[data-a11y-text-align="left"] h3,
-html[data-a11y-text-align="left"] h4,
-html[data-a11y-text-align="left"] li {
+html[data-a11y-text-align="left"] main p,
+html[data-a11y-text-align="left"] main span:not(.a11y-widget-root *),
+html[data-a11y-text-align="left"] main h1,
+html[data-a11y-text-align="left"] main h2,
+html[data-a11y-text-align="left"] main h3,
+html[data-a11y-text-align="left"] main h4,
+html[data-a11y-text-align="left"] main li,
+html[data-a11y-text-align="left"] .page-content p,
+html[data-a11y-text-align="left"] .page-content li {
   text-align: left !important;
 }
 
-html[data-a11y-text-align="justify"] p,
-html[data-a11y-text-align="justify"] span,
-html[data-a11y-text-align="justify"] li {
+html[data-a11y-text-align="justify"] main p,
+html[data-a11y-text-align="justify"] main span:not(.a11y-widget-root *),
+html[data-a11y-text-align="justify"] main li,
+html[data-a11y-text-align="justify"] .page-content p,
+html[data-a11y-text-align="justify"] .page-content li {
   text-align: justify !important;
 }
 
-html[data-a11y-text-align="center"] p,
-html[data-a11y-text-align="center"] span,
-html[data-a11y-text-align="center"] h1,
-html[data-a11y-text-align="center"] h2,
-html[data-a11y-text-align="center"] h3,
-html[data-a11y-text-align="center"] h4 {
+html[data-a11y-text-align="center"] main p,
+html[data-a11y-text-align="center"] main span:not(.a11y-widget-root *),
+html[data-a11y-text-align="center"] main h1,
+html[data-a11y-text-align="center"] main h2,
+html[data-a11y-text-align="center"] main h3,
+html[data-a11y-text-align="center"] main h4,
+html[data-a11y-text-align="center"] .page-content p,
+html[data-a11y-text-align="center"] .page-content h1,
+html[data-a11y-text-align="center"] .page-content h2,
+html[data-a11y-text-align="center"] .page-content h3 {
   text-align: center !important;
 }
 
 /* 6. Saturation */
-html[data-a11y-saturation="high"] main,
-html[data-a11y-saturation="high"] header,
-html[data-a11y-saturation="high"] footer {
-  filter: saturate(220%) !important;
+html[data-a11y-saturation="high"] body > :not(.a11y-widget-root):not(#aco-floating-btn) {
+  filter: saturate(200%) !important;
 }
-html[data-a11y-saturation="grayscale"] main,
-html[data-a11y-saturation="grayscale"] header,
-html[data-a11y-saturation="grayscale"] footer {
+html[data-a11y-saturation="grayscale"] body > :not(.a11y-widget-root):not(#aco-floating-btn) {
   filter: grayscale(100%) !important;
 }
-html[data-a11y-saturation="low"] main,
-html[data-a11y-saturation="low"] header,
-html[data-a11y-saturation="low"] footer {
+html[data-a11y-saturation="low"] body > :not(.a11y-widget-root):not(#aco-floating-btn) {
   filter: saturate(40%) !important;
 }
 
+/* =====================================================
+   WIDGET AKSESIBILITAS - ISOLASI DARI SEMUA MODE A11Y
+   Widget harus SELALU tampil dengan tampilan aslinya
+   ===================================================== */
+
+/* NOTE: isolation:isolate DIHAPUS — menyebabkan position:fixed di dalamnya
+   masuk stacking context terpisah dan tertimbun footer/elemen lain.
+   Proteksi kontras ditangani via explicit CSS rules di bawah. */
+
 /* 7. Contrast Modes */
-/* Dark High Contrast (Yellow on Dark) */
+/* Dark High Contrast (Yellow / White on Dark) */
 html[data-a11y-contrast="dark"] {
-  background-color: #000000 !important;
+  background-color: #0b0f19 !important;
+  color-scheme: dark !important;
 }
 html[data-a11y-contrast="dark"] body {
-  background-color: #000000 !important;
+  background-color: #0b0f19 !important;
   color: #ffff00 !important;
 }
 html[data-a11y-contrast="dark"] main,
-html[data-a11y-contrast="dark"] header:not(.a11y-modal-header),
+html[data-a11y-contrast="dark"] header:not(.a11y-panel-header),
 html[data-a11y-contrast="dark"] section,
 html[data-a11y-contrast="dark"] footer,
-html[data-a11y-contrast="dark"] .glass,
-html[data-a11y-contrast="dark"] .glass-dark,
+html[data-a11y-contrast="dark"] .glass:not(.a11y-widget-root .glass),
+html[data-a11y-contrast="dark"] .glass-dark:not(.a11y-widget-root .glass-dark),
 html[data-a11y-contrast="dark"] .stat-card,
 html[data-a11y-contrast="dark"] .quick-card,
 html[data-a11y-contrast="dark"] .service-card,
-html[data-a11y-contrast="dark"] .news-card {
-  background: #111111 !important;
+html[data-a11y-contrast="dark"] .news-card,
+html[data-a11y-contrast="dark"] .profile-card,
+html[data-a11y-contrast="dark"] .sidebar-card,
+html[data-a11y-contrast="dark"] .content-card,
+html[data-a11y-contrast="dark"] .info-card {
+  background: #111827 !important;
   color: #ffff00 !important;
-  border-color: #ffff00 !important;
+  border-color: #eab308 !important;
 }
-html[data-a11y-contrast="dark"] h1,
-html[data-a11y-contrast="dark"] h2,
-html[data-a11y-contrast="dark"] h3,
-html[data-a11y-contrast="dark"] h4,
-html[data-a11y-contrast="dark"] p,
-html[data-a11y-contrast="dark"] span:not(.a11y-badge):not(.a11y-widget-root *),
+html[data-a11y-contrast="dark"] h1:not(.a11y-widget-root *),
+html[data-a11y-contrast="dark"] h2:not(.a11y-widget-root *),
+html[data-a11y-contrast="dark"] h3:not(.a11y-widget-root *),
+html[data-a11y-contrast="dark"] h4:not(.a11y-widget-root *),
+html[data-a11y-contrast="dark"] p:not(.a11y-widget-root *),
+html[data-a11y-contrast="dark"] span:not(.a11y-widget-root *):not(.a11y-card-badge):not(.a11y-active-badge),
 html[data-a11y-contrast="dark"] a:not(.a11y-widget-root *) {
-  color: #ffffff !important;
+  color: #ffff00 !important;
 }
 html[data-a11y-contrast="dark"] .hero-title,
 html[data-a11y-contrast="dark"] .hero-title span,
@@ -408,9 +422,67 @@ html[data-a11y-contrast="dark"] .section-title {
   color: #ffff00 !important;
 }
 
-/* Light High Contrast */
+/* Proteksi widget dari dark mode - hardcode nilai asli widget */
+html[data-a11y-contrast="dark"] .a11y-floating-panel {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  filter: none !important;
+}
+html[data-a11y-contrast="dark"] .a11y-panel-header {
+  background: #1b5e20 !important;
+  color: #ffffff !important;
+}
+html[data-a11y-contrast="dark"] .a11y-panel-header * {
+  color: #ffffff !important;
+}
+html[data-a11y-contrast="dark"] .a11y-panel-body {
+  background: #f8fafc !important;
+}
+html[data-a11y-contrast="dark"] .a11y-card {
+  background: #ffffff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  color: #1e293b !important;
+}
+html[data-a11y-contrast="dark"] .a11y-card--active {
+  border: 2px solid #1b5e20 !important;
+}
+html[data-a11y-contrast="dark"] .a11y-card-icon-container {
+  background: #f0fdf4 !important;
+  color: #1b5e20 !important;
+}
+html[data-a11y-contrast="dark"] .a11y-card-title {
+  color: #1e293b !important;
+}
+html[data-a11y-contrast="dark"] .a11y-card-desc {
+  color: #64748b !important;
+}
+html[data-a11y-contrast="dark"] .a11y-icon,
+html[data-a11y-contrast="dark"] .a11y-font-icon {
+  color: #1b5e20 !important;
+}
+html[data-a11y-contrast="dark"] .a11y-voice-mode-row {
+  background: #ffffff !important;
+  border: 1.5px solid #e2e8f0 !important;
+}
+html[data-a11y-contrast="dark"] .a11y-voice-label {
+  color: #0f172a !important;
+}
+html[data-a11y-contrast="dark"] .a11y-voice-hint {
+  color: #64748b !important;
+}
+html[data-a11y-contrast="dark"] .a11y-reset-btn {
+  background: #1b5e20 !important;
+  color: #ffffff !important;
+}
+html[data-a11y-contrast="dark"] .a11y-widget-root {
+  filter: none !important;
+}
+
+/* Light High Contrast (Black on Pure White) */
 html[data-a11y-contrast="light"] {
   background-color: #ffffff !important;
+  color-scheme: light !important;
 }
 html[data-a11y-contrast="light"] body {
   background-color: #ffffff !important;
@@ -420,31 +492,107 @@ html[data-a11y-contrast="light"] main,
 html[data-a11y-contrast="light"] section,
 html[data-a11y-contrast="light"] header:not(.a11y-panel-header),
 html[data-a11y-contrast="light"] footer,
-html[data-a11y-contrast="light"] .glass,
+html[data-a11y-contrast="light"] .glass:not(.a11y-widget-root .glass),
 html[data-a11y-contrast="light"] .stat-card,
 html[data-a11y-contrast="light"] .quick-card,
 html[data-a11y-contrast="light"] .service-card,
-html[data-a11y-contrast="light"] .news-card {
+html[data-a11y-contrast="light"] .news-card,
+html[data-a11y-contrast="light"] .profile-card,
+html[data-a11y-contrast="light"] .sidebar-card,
+html[data-a11y-contrast="light"] .content-card,
+html[data-a11y-contrast="light"] .info-card {
   background: #ffffff !important;
   color: #000000 !important;
-  border: 1px solid #000000 !important;
+  border: 2px solid #000000 !important;
   box-shadow: none !important;
 }
-html[data-a11y-contrast="light"] h1,
-html[data-a11y-contrast="light"] h2,
-html[data-a11y-contrast="light"] h3,
-html[data-a11y-contrast="light"] h4,
-html[data-a11y-contrast="light"] p,
+html[data-a11y-contrast="light"] h1:not(.a11y-widget-root *),
+html[data-a11y-contrast="light"] h2:not(.a11y-widget-root *),
+html[data-a11y-contrast="light"] h3:not(.a11y-widget-root *),
+html[data-a11y-contrast="light"] h4:not(.a11y-widget-root *),
+html[data-a11y-contrast="light"] p:not(.a11y-widget-root *),
+html[data-a11y-contrast="light"] span:not(.a11y-widget-root *),
 html[data-a11y-contrast="light"] a:not(.a11y-widget-root *) {
   color: #000000 !important;
+}
+
+/* Proteksi widget dari light mode - hardcode nilai asli widget */
+html[data-a11y-contrast="light"] .a11y-floating-panel {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.22) !important;
+  filter: none !important;
+}
+html[data-a11y-contrast="light"] .a11y-panel-header {
+  background: #1b5e20 !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+html[data-a11y-contrast="light"] .a11y-panel-header * {
+  color: #ffffff !important;
+  border: none !important;
+}
+html[data-a11y-contrast="light"] .a11y-panel-body {
+  background: #f8fafc !important;
+}
+html[data-a11y-contrast="light"] .a11y-card {
+  background: #ffffff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  color: #1e293b !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+html[data-a11y-contrast="light"] .a11y-card--active {
+  border: 2px solid #1b5e20 !important;
+}
+html[data-a11y-contrast="light"] .a11y-card-icon-container {
+  background: #f0fdf4 !important;
+  color: #1b5e20 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+html[data-a11y-contrast="light"] .a11y-card-title {
+  color: #1e293b !important;
+}
+html[data-a11y-contrast="light"] .a11y-card-desc {
+  color: #64748b !important;
+}
+html[data-a11y-contrast="light"] .a11y-icon,
+html[data-a11y-contrast="light"] .a11y-font-icon {
+  color: #1b5e20 !important;
+}
+html[data-a11y-contrast="light"] .a11y-voice-mode-row {
+  background: #ffffff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  box-shadow: none !important;
+}
+html[data-a11y-contrast="light"] .a11y-voice-label {
+  color: #0f172a !important;
+}
+html[data-a11y-contrast="light"] .a11y-voice-hint {
+  color: #64748b !important;
+}
+html[data-a11y-contrast="light"] .a11y-reset-btn {
+  background: #1b5e20 !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+html[data-a11y-contrast="light"] .a11y-widget-root {
+  filter: none !important;
 }
 
 /* Invert Contrast */
 html[data-a11y-contrast="invert"] {
   filter: invert(100%) hue-rotate(180deg) !important;
+  background-color: #ffffff !important;
 }
 html[data-a11y-contrast="invert"] img,
 html[data-a11y-contrast="invert"] video,
+html[data-a11y-contrast="invert"] iframe {
+  filter: invert(100%) hue-rotate(180deg) !important;
+}
+/* Widget di-invert balik supaya tetap tampil normal */
 html[data-a11y-contrast="invert"] .a11y-widget-root {
   filter: invert(100%) hue-rotate(180deg) !important;
 }
@@ -453,7 +601,7 @@ html[data-a11y-contrast="invert"] .a11y-widget-root {
 html[data-a11y-highlight-links="true"] a:not(.a11y-widget-root *),
 html[data-a11y-highlight-links="true"] button:not(.a11y-widget-root *) {
   text-decoration: underline 3px #eab308 !important;
-  background-color: rgba(254, 240, 138, 0.4) !important;
+  background-color: rgba(254, 240, 138, 0.45) !important;
   color: #0f172a !important;
   outline: 2px solid #ca8a04 !important;
   outline-offset: 2px !important;
@@ -461,9 +609,9 @@ html[data-a11y-highlight-links="true"] button:not(.a11y-widget-root *) {
 }
 
 /* 9. Pause Animations */
-html[data-a11y-pause-animations="true"] *,
-html[data-a11y-pause-animations="true"] *::before,
-html[data-a11y-pause-animations="true"] *::after {
+html[data-a11y-pause-animations="true"] *:not(.a11y-widget-root *):not(.a11y-floating-trigger),
+html[data-a11y-pause-animations="true"] *:not(.a11y-widget-root *)::before,
+html[data-a11y-pause-animations="true"] *:not(.a11y-widget-root *)::after {
   animation: none !important;
   animation-duration: 0.001ms !important;
   animation-iteration-count: 1 !important;
@@ -473,11 +621,10 @@ html[data-a11y-pause-animations="true"] *::after {
 }
 
 /* 10. Hide Images */
-html[data-a11y-hide-images="true"] img:not(.a11y-widget-root *),
-html[data-a11y-hide-images="true"] picture,
-html[data-a11y-hide-images="true"] video,
+html[data-a11y-hide-images="true"] img:not(.a11y-widget-root *):not(.navbar__logo-img),
+html[data-a11y-hide-images="true"] picture:not(.a11y-widget-root *),
+html[data-a11y-hide-images="true"] video:not(.a11y-widget-root *),
 html[data-a11y-hide-images="true"] .image-carousel,
-html[data-a11y-hide-images="true"] .hero-bg-overlay,
 html[data-a11y-hide-images="true"] .news-image {
   opacity: 0 !important;
   visibility: hidden !important;
@@ -487,7 +634,7 @@ html[data-a11y-hide-images="true"] .news-image {
   margin: 0 !important;
 }
 html[data-a11y-hide-images="true"] main [style*="background-image"],
-html[data-a11y-hide-images="true"] header [style*="background-image"] {
+html[data-a11y-hide-images="true"] .hero-banner[style*="background-image"] {
   background-image: none !important;
 }
 
@@ -501,21 +648,11 @@ html[data-a11y-large-cursor="true"] input {
 }
 
 /* 12. Tooltip Mode Assistant */
-html[data-a11y-tooltip="true"] [title]:hover::after,
-html[data-a11y-tooltip="true"] [aria-label]:hover::after {
-  content: attr(title);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #0f172a;
-  color: #ffffff;
-  font-size: 0.8rem;
-  padding: 6px 12px;
-  border-radius: 6px;
-  white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  z-index: 999999;
-  pointer-events: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+html[data-a11y-tooltip="true"] a:not(.a11y-widget-root *):hover,
+html[data-a11y-tooltip="true"] button:not(.a11y-widget-root *):hover,
+html[data-a11y-tooltip="true"] [title]:not(.a11y-widget-root *):hover,
+html[data-a11y-tooltip="true"] [aria-label]:not(.a11y-widget-root *):hover {
+  outline: 2px dashed #0284c7 !important;
+  outline-offset: 2px !important;
 }
+

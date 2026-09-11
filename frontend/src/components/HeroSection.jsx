@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaSearch, FaShieldAlt, FaGavel, FaListAlt, FaBullhorn } from 'react-icons/fa';
+import { FaSearch, FaShieldAlt, FaGavel, FaListAlt, FaBullhorn, FaTimes, FaExpandAlt, FaCopy, FaCheck } from 'react-icons/fa';
 import './HeroSection.css';
 
 function HeroSection({ onOpenCaseModal }) {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isTickerVisible, setIsTickerVisible] = useState(true);
+  const [isAnnouncementModalOpen, setIsAnnouncementModalOpen] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   const [heroSettings, setHeroSettings] = useState({
     hero_badge: 'Zona Integritas WBK & WBBM',
     hero_title: 'Selamat Datang di Pengadilan Agama Kota Cimahi',
@@ -38,34 +41,61 @@ function HeroSection({ onOpenCaseModal }) {
       {/* Decorative background elements */}
       <div className="hero__bg-pattern"></div>
       <div className="hero__bg-overlay"></div>
-      <div className="hero__bg-glow"></div>
 
-      {/* Floating decorative shapes */}
-      <div className="hero__shape hero__shape--1"></div>
-      <div className="hero__shape hero__shape--2"></div>
-      <div className="hero__shape hero__shape--3"></div>
-
-      {/* Running Announcement Ticker */}
+      {/* Running Announcement Ticker - Positioned near navbar */}
       {heroSettings.running_text && (
-        <div className="hero__ticker">
-          <div className="hero__ticker-badge">
-            <FaBullhorn /> Pengumuman:
-          </div>
-          <div className="hero__ticker-content">
-            <div className="hero__ticker-text">
-              {heroSettings.running_text}
+        isTickerVisible ? (
+          <div className="hero__ticker">
+            <div 
+              className="hero__ticker-badge"
+              onClick={() => setIsAnnouncementModalOpen(true)}
+              title="Klik untuk memperbesar pengumuman"
+            >
+              <FaBullhorn /> Pengumuman:
+            </div>
+            <div 
+              className="hero__ticker-content"
+              onClick={() => setIsAnnouncementModalOpen(true)}
+              title="Klik untuk memperbesar / membaca teks pengumuman lengkap"
+            >
+              <div className="hero__ticker-text">
+                {heroSettings.running_text}
+              </div>
+            </div>
+            <div className="hero__ticker-actions">
+              <button 
+                type="button"
+                className="hero__ticker-action-btn"
+                onClick={() => setIsAnnouncementModalOpen(true)}
+                title="Perbesar / Zoom Pengumuman"
+                aria-label="Perbesar Pengumuman"
+              >
+                <FaExpandAlt size={11} />
+              </button>
+              <button 
+                type="button"
+                className="hero__ticker-action-btn hero__ticker-action-btn--close"
+                onClick={() => setIsTickerVisible(false)}
+                title="Sembunyikan Pengumuman"
+                aria-label="Sembunyikan Pengumuman"
+              >
+                <FaTimes size={12} />
+              </button>
             </div>
           </div>
-        </div>
+        ) : (
+          <button 
+            type="button"
+            className="hero__ticker-reopen-btn"
+            onClick={() => setIsTickerVisible(true)}
+            title="Tampilkan Pengumuman Kembali"
+          >
+            <FaBullhorn /> Lihat Pengumuman
+          </button>
+        )
       )}
 
       <div className="hero__content container">
-        {/* Badge */}
-        <div className="hero__badge animate-fade-in-down">
-          <FaShieldAlt className="hero__badge-icon" />
-          <span>{heroSettings.hero_badge}</span>
-        </div>
-
         {/* Main Heading */}
         <h1 className="hero__title animate-fade-in-up">
           {heroSettings.hero_title.includes('Pengadilan Agama') ? (
@@ -117,15 +147,73 @@ function HeroSection({ onOpenCaseModal }) {
         </form>
       </div>
 
-      {/* Bottom wave */}
+      {/* Bottom line divider */}
       <div className="hero__wave">
-        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <svg viewBox="0 0 1440 24" preserveAspectRatio="none">
           <path
-            d="M0,40 C360,100 720,0 1080,60 C1260,80 1380,50 1440,40 L1440,100 L0,100 Z"
+            d="M0,8 C270,22 550,5 810,6 C1070,7 1220,21 1440,9 L1440,24 L0,24 Z"
             fill="var(--surface-bg)"
           />
         </svg>
       </div>
+
+      {/* Announcement Zoom / Detail Modal */}
+      {isAnnouncementModalOpen && (
+        <div 
+          className="hero-announcement-modal-overlay" 
+          onClick={() => setIsAnnouncementModalOpen(false)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="hero-announcement-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="hero-announcement-modal__header">
+              <div className="hero-announcement-modal__title-box">
+                <span className="hero-announcement-modal__icon">
+                  <FaBullhorn />
+                </span>
+                <div>
+                  <h3 className="hero-announcement-modal__title">Pengumuman Resmi</h3>
+                  <span className="hero-announcement-modal__sub">Pengadilan Agama Kota Cimahi</span>
+                </div>
+              </div>
+              <button 
+                className="hero-announcement-modal__close" 
+                onClick={() => setIsAnnouncementModalOpen(false)}
+                aria-label="Tutup"
+              >
+                <FaTimes />
+              </button>
+            </div>
+
+            <div className="hero-announcement-modal__body">
+              <div className="hero-announcement-modal__text">
+                {heroSettings.running_text}
+              </div>
+            </div>
+
+            <div className="hero-announcement-modal__footer">
+              <button 
+                type="button"
+                className="hero-announcement-modal__btn hero-announcement-modal__btn--copy"
+                onClick={() => {
+                  navigator.clipboard.writeText(heroSettings.running_text);
+                  setIsCopied(true);
+                  setTimeout(() => setIsCopied(false), 2000);
+                }}
+              >
+                {isCopied ? <><FaCheck /> Tersalin!</> : <><FaCopy /> Salin Teks</>}
+              </button>
+              <button 
+                type="button"
+                className="hero-announcement-modal__btn hero-announcement-modal__btn--primary"
+                onClick={() => setIsAnnouncementModalOpen(false)}
+              >
+                Tutup
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

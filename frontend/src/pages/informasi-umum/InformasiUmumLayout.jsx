@@ -94,7 +94,9 @@ function InformasiUmumLayout({ title, subtitle, breadcrumb, children }) {
                       className={`sidebar-nav-link ${isActive ? 'active' : ''}`}
                     >
                       <span>{item.title}</span>
-                      <FaChevronRight size={11} style={{ opacity: isActive ? 1 : 0.4 }} />
+                      {item.children && item.children.length > 0 && (
+                        <FaChevronRight size={11} style={{ opacity: isActive ? 1 : 0.4 }} />
+                      )}
                     </Link>
                     {item.children && (
                       <ul className="sidebar-nav-sublist">

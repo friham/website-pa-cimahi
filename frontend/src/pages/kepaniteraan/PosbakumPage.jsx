@@ -1,9 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import KepaniteraanLayout from './KepaniteraanLayout';
 import { FaBalanceScale, FaFileAlt, FaHandHoldingHeart, FaListUl, FaBook, FaCheckCircle, FaDownload } from 'react-icons/fa';
 
 function PosbakumPage() {
-  const [activeTab, setActiveTab] = useState('keberadaan');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tabFromUrl = searchParams.get('tab');
+  const [activeTab, setActiveTab] = useState(tabFromUrl || 'keberadaan');
+
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (tab) {
+      setActiveTab(tab);
+    }
+  }, [searchParams]);
+
+  const handleTabSelect = (tabId) => {
+    setActiveTab(tabId);
+    setSearchParams({ tab: tabId });
+  };
 
   return (
     <KepaniteraanLayout
@@ -30,7 +45,7 @@ function PosbakumPage() {
           ].map(tab => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => handleTabSelect(tab.id)}
               style={{
                 padding: '8px 16px',
                 borderRadius: '20px',

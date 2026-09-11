@@ -332,7 +332,7 @@ function Navbar() {
     }, 120);
   }, []);
 
-  // Klik link → tutup semua dropdown dan sub-menu seketika
+  // Klik link → tutup semua dropdown dan sub-menu seketika, dan scroll ke atas
   const handleLinkClick = useCallback(() => {
     if (closeTimer.current) {
       clearTimeout(closeTimer.current);
@@ -341,6 +341,7 @@ function Navbar() {
     setActiveDropdown(null);
     setOpenSubMenus({});
     setIsOpen(false);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, []);
 
   const toggleSubMenu = (key, e) => {

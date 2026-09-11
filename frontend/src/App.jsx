@@ -90,6 +90,7 @@ import ArtikelHukumPage from './pages/publikasi/ArtikelHukumPage';
 import PerjanjianKerjasamaPage from './pages/publikasi/PerjanjianKerjasamaPage';
 import HasilPenelitianPage from './pages/publikasi/HasilPenelitianPage';
 
+import ScrollToTop from './components/ScrollToTop';
 import './App.css';
 
 function App() {
@@ -97,6 +98,7 @@ function App() {
     <AuthProvider>
       <AccessibilityProvider>
         <Router>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<HomePage />} />
 

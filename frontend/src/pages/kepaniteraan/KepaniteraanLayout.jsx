@@ -25,10 +25,30 @@ const menuLinks = [
   {
     title: 'Pos Bantuan Hukum (Posbakum)',
     path: '/kepaniteraan/posbakum',
+    children: [
+      {
+        title: 'Keberadaan Posbakum',
+        path: '/kepaniteraan/posbakum?tab=keberadaan',
+      },
+      {
+        title: 'Syarat dan Mekanisme Posbakum',
+        path: '/kepaniteraan/posbakum?tab=syarat',
+      },
+    ],
   },
   {
     title: 'Perkara Prodeo (Cuma-cuma)',
     path: '/kepaniteraan/prodeo',
+    children: [
+      {
+        title: 'Prosedur Berperkara Prodeo',
+        path: '/kepaniteraan/prodeo?tab=prosedur',
+      },
+      {
+        title: 'Syarat & Dokumen Prodeo',
+        path: '/kepaniteraan/prodeo?tab=syarat',
+      },
+    ],
   },
   {
     title: 'Hak-Hak Para Pencari Keadilan',
@@ -156,7 +176,10 @@ function KepaniteraanLayout({ title, subtitle, breadcrumb, children }) {
             </div>
             <ul className="sidebar-nav-list">
               {menuLinks.map((item, index) => {
-                const isActive = currentPath === item.path;
+                const fullCurrent = location.pathname + (location.search || '');
+                const isExact = currentPath === item.path;
+                const isChildActive = item.children?.some(c => fullCurrent === c.path || (currentPath === item.path && !location.search));
+                const isActive = isExact || isChildActive;
 
                 if (item.external) {
                   return (
@@ -181,8 +204,27 @@ function KepaniteraanLayout({ title, subtitle, breadcrumb, children }) {
                       className={`sidebar-nav-link ${isActive ? 'active' : ''}`}
                     >
                       <span>{item.title}</span>
-                      <FaChevronRight size={11} style={{ opacity: isActive ? 1 : 0.4 }} />
+                      {item.children && item.children.length > 0 && (
+                        <FaChevronRight size={11} style={{ opacity: isActive ? 1 : 0.4 }} />
+                      )}
                     </Link>
+                    {item.children && (
+                      <ul className="sidebar-nav-sublist">
+                        {item.children.map((child, cIdx) => {
+                          const isSubActive = fullCurrent === child.path || (currentPath === item.path && !location.search && cIdx === 0);
+                          return (
+                            <li key={cIdx}>
+                              <Link
+                                to={child.path}
+                                className={`sidebar-nav-sublink ${isSubActive ? 'active' : ''}`}
+                              >
+                                {child.title}
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
                   </li>
                 );
               })}

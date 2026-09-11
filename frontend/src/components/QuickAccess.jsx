@@ -58,7 +58,7 @@ function QuickAccess({ onOpenCaseModal }) {
     <section className="quick-access" id="layanan">
       <div className="container">
         <div className="quick-access__header">
-          <span className="service-guide__tag" style={{ display: 'inline-block', marginBottom: '0.5rem' }}>Layanan Digital</span>
+          <span className="service-guide__tag">Layanan Digital</span>
           <h2 className="section-title">Yang Anda Butuhkan?</h2>
           <p className="section-subtitle">Akses cepat ke layanan utama dan aplikasi peradilan online kami</p>
         </div>

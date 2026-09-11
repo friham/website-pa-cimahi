@@ -113,7 +113,9 @@ function PublikasiLayout({ title, subtitle, breadcrumb, children }) {
                         <IconComponent size={14} style={{ opacity: isActive ? 1 : 0.6 }} />
                         <span>{item.title}</span>
                       </div>
-                      <FaChevronRight size={11} style={{ opacity: isActive ? 1 : 0.4 }} />
+                      {item.children && item.children.length > 0 && (
+                        <FaChevronRight size={11} style={{ opacity: isActive ? 1 : 0.4 }} />
+                      )}
                     </Link>
                   </li>
                 );

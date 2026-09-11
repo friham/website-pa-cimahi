@@ -5,8 +5,6 @@ import {
   FaTimes, 
   FaExternalLinkAlt, 
   FaArrowRight, 
-  FaShieldAlt, 
-  FaWheelchair, 
   FaFileAlt, 
   FaQrcode, 
   FaWhatsapp, 
@@ -46,7 +44,6 @@ function HomeSpotlightBanners() {
         <div className="spotlight-block zi-block">
           <div className="spotlight-block__header">
             <div className="spotlight-badge">
-              <FaShieldAlt className="spotlight-badge__icon" />
               <span>REFORMASI BIROKRASI</span>
             </div>
             <h2 className="spotlight-title">Pembangunan Zona Integritas (WBK & WBBM)</h2>
@@ -81,12 +78,6 @@ function HomeSpotlightBanners() {
               </Link>
             ))}
           </div>
-
-          <div className="spotlight-actions" style={{ justifyContent: 'center', marginTop: '1.25rem' }}>
-            <Link to="/layanan-publik/zona-integritas" className="spotlight-btn spotlight-btn--outline">
-              <FaShieldAlt /> Pelajari 6 Area Perubahan Zona Integritas
-            </Link>
-          </div>
         </div>
 
         {/* ========================================================
@@ -95,7 +86,6 @@ function HomeSpotlightBanners() {
         <div className="spotlight-block prioritas-block">
           <div className="spotlight-block__header">
             <div className="spotlight-badge spotlight-badge--accent">
-              <FaWheelchair className="spotlight-badge__icon" />
               <span>RAMAH DISABILITAS & KAUM RENTAN</span>
             </div>
             <h2 className="spotlight-title">Alur Pelayanan Prioritas PTSP PA Kota Cimahi</h2>

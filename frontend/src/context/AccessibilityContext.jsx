@@ -131,7 +131,14 @@ export function AccessibilityProvider({ children }) {
   // Extract natural Indonesian description from any DOM element
   const getElementSpeech = useCallback((target) => {
     if (!target || typeof target.closest !== 'function') return '';
-    if (target.closest('[aria-hidden="true"]') || target.closest('script') || target.closest('style') || target.closest('.a11y-panel-header')) {
+    if (
+      target.closest('[aria-hidden="true"]') ||
+      target.closest('script') ||
+      target.closest('style') ||
+      target.closest('.a11y-panel-header') ||
+      target.closest('.a11y-floating-trigger') ||
+      target.closest('.a11y-close-btn')
+    ) {
       return '';
     }
 

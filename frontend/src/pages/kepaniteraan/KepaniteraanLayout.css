@@ -132,3 +132,34 @@
     font-size: 1.5rem;
   }
 }
+
+/* Sidebar Sublist */
+.sidebar-nav-sublist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #f1f5f9;
+}
+
+.sidebar-nav-sublink {
+  display: block;
+  padding: 0.65rem 1.25rem 0.65rem 2.25rem;
+  font-size: 0.82rem;
+  color: var(--gray-600);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.sidebar-nav-sublink:hover {
+  color: var(--primary-800);
+  background: #e2e8f0;
+}
+
+.sidebar-nav-sublink.active {
+  color: var(--primary-900);
+  font-weight: 700;
+  background: var(--primary-100);
+  border-left: 3px solid var(--primary-600);
+  padding-left: calc(2.25rem - 3px);
+}
+

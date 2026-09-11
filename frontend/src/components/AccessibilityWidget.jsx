@@ -199,7 +199,7 @@ function AccessibilityWidget() {
 
   return (
     <div className={`a11y-widget-root a11y-pos-${settings.widgetPosition}`}>
-      {/* Floating Trigger Button */}
+      {/* Floating Trigger Button - selalu tampil (fixed position) */}
       {settings.widgetPosition !== 'hidden' ? (
         <div
           className="a11y-floating-wrapper"

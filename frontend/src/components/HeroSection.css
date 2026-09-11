@@ -3,31 +3,44 @@
    ============================================ */
 .hero {
   position: relative;
-  min-height: 620px;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--navbar-height) + 1.5rem) 0 6rem;
+  /* Extra padding accounts for ticker bar below navbar (~44px ticker + 12px gap) */
+  padding: calc(var(--navbar-height) + 4.5rem) 1.5rem 3rem;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
-/* Announcement Ticker */
+/* Announcement Ticker - Positioned directly near navbar */
 .hero__ticker {
-  position: relative;
-  z-index: 12;
+  position: absolute;
+  top: calc(var(--navbar-height, 70px) + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
   width: calc(100% - 3rem);
   max-width: var(--container-max);
-  margin: 0 auto 2rem;
-  background: rgba(13, 51, 17, 0.85);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: var(--radius-full);
+  background: rgba(13, 51, 17, 0.90);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
-  padding: 6px 16px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  padding: 6px 10px 6px 14px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   overflow: hidden;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.hero__ticker:hover {
+  background: rgba(13, 51, 17, 0.97);
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
 }
 
 .hero__ticker-badge {
@@ -37,18 +50,20 @@
   background: var(--gold-500);
   color: var(--primary-950);
   padding: 4px 12px;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-sm);
   font-size: 0.76rem;
   font-weight: 800;
   white-space: nowrap;
   margin-right: 12px;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .hero__ticker-content {
   flex: 1;
   overflow: hidden;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .hero__ticker-text {
@@ -56,12 +71,80 @@
   font-size: 0.82rem;
   color: rgba(255, 255, 255, 0.95);
   font-weight: 500;
-  animation: tickerSlide 25s linear infinite;
-  padding-left: 100%;
+  animation: tickerSlide 30s linear infinite;
+  white-space: nowrap;
+}
+
+.hero__ticker:hover .hero__ticker-text {
+  animation-play-state: paused;
+}
+
+.hero__ticker-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 12px;
+  flex-shrink: 0;
+}
+
+.hero__ticker-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hero__ticker-action-btn:hover {
+  background: rgba(212, 175, 55, 0.35);
+  color: var(--gold-300);
+  border-color: var(--gold-400);
+  transform: scale(1.08);
+}
+
+.hero__ticker-action-btn--close:hover {
+  background: rgba(220, 38, 38, 0.4);
+  color: #fecaca;
+  border-color: #ef4444;
+}
+
+.hero__ticker-reopen-btn {
+  position: absolute;
+  top: calc(var(--navbar-height, 70px) + 12px);
+  right: 24px;
+  z-index: 25;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(13, 51, 17, 0.92);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: var(--gold-400);
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease;
+  animation: fadeIn 0.3s ease;
+}
+
+.hero__ticker-reopen-btn:hover {
+  background: rgba(20, 72, 24, 0.98);
+  border-color: var(--gold-400);
+  color: #fff;
+  transform: translateY(-1px);
 }
 
 @keyframes tickerSlide {
-  0% { transform: translateX(0); }
+  0%   { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
 }
 
@@ -70,9 +153,9 @@
 .hero__bg-pattern {
   position: absolute;
   inset: 0;
-  background-image: url('/images/hero-bg.jpg');
-  background-size: 130%;
-  background-position: 55% 20%;
+  background-image: url('/images/hero-bg-gedung.png');
+  background-size: cover;
+  background-position: center 25%;
   background-repeat: no-repeat;
   z-index: 0;
 }
@@ -83,21 +166,11 @@
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(13, 51, 17, 0.82) 0%,
-    rgba(26, 92, 31, 0.75) 30%,
-    rgba(27, 94, 32, 0.70) 55%,
-    rgba(46, 125, 50, 0.65) 80%,
-    rgba(27, 94, 32, 0.72) 100%
+    rgba(13, 51, 17, 0.86) 0%,
+    rgba(26, 92, 31, 0.76) 35%,
+    rgba(27, 94, 32, 0.70) 70%,
+    rgba(46, 125, 50, 0.62) 100%
   );
-}
-
-.hero__bg-pattern::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: 
-    radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.08) 0%, transparent 50%);
 }
 
 .hero__bg-overlay {
@@ -110,54 +183,6 @@
     rgba(13, 51, 17, 0.15) 100%
   );
   z-index: 1;
-}
-
-.hero__bg-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 60%);
-  z-index: 1;
-}
-
-/* Floating shapes */
-.hero__shape {
-  position: absolute;
-  border-radius: 50%;
-  z-index: 1;
-  opacity: 0.06;
-}
-
-.hero__shape--1 {
-  width: 300px;
-  height: 300px;
-  background: var(--gold-500);
-  top: -80px;
-  right: -80px;
-  animation: float 8s ease-in-out infinite;
-}
-
-.hero__shape--2 {
-  width: 200px;
-  height: 200px;
-  background: var(--primary-400);
-  bottom: 60px;
-  left: -60px;
-  animation: float 6s ease-in-out infinite;
-  animation-delay: 2s;
-}
-
-.hero__shape--3 {
-  width: 120px;
-  height: 120px;
-  background: white;
-  top: 30%;
-  right: 15%;
-  animation: float 7s ease-in-out infinite;
-  animation-delay: 4s;
 }
 
 /* Content */
@@ -218,7 +243,7 @@
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.8);
   max-width: 600px;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 1.75rem;
   font-weight: 400;
 }
 
@@ -227,7 +252,7 @@
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.75rem;
   flex-wrap: wrap;
 }
 
@@ -326,26 +351,47 @@
   transform: scale(1.03);
 }
 
-/* Wave */
+/* Wave / Line Divider */
 .hero__wave {
   position: absolute;
   bottom: -1px;
   left: 0;
   right: 0;
   z-index: 5;
+  line-height: 0;
 }
 
 .hero__wave svg {
   display: block;
   width: 100%;
-  height: 80px;
+  height: 20px;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .hero {
-    min-height: 500px;
-    padding: calc(var(--navbar-height) + 2rem) 0 5rem;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: calc(var(--navbar-height, 60px) + 4.2rem) 1rem 2.5rem;
+  }
+
+  .hero__ticker {
+    top: calc(var(--navbar-height, 60px) + 8px);
+    width: calc(100% - 1.5rem);
+    padding: 5px 8px 5px 10px;
+  }
+
+  .hero__ticker-badge {
+    padding: 3px 8px;
+    font-size: 0.7rem;
+    margin-right: 8px;
+  }
+
+  .hero__ticker-reopen-btn {
+    top: calc(var(--navbar-height, 60px) + 8px);
+    right: 12px;
+    font-size: 0.72rem;
+    padding: 4px 10px;
   }
 
   .hero__title {
@@ -362,7 +408,7 @@
   }
 
   .hero__wave svg {
-    height: 50px;
+    height: 12px;
   }
 }
 
@@ -378,5 +424,166 @@
 
   .hero__search-input {
     font-size: 0.8rem;
+  }
+}
+
+/* ============================================
+   Announcement Zoom Modal Styles
+   ============================================ */
+.hero-announcement-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.hero-announcement-modal {
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  animation: modalScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-announcement-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, #1b5e20, #0d3311);
+  color: white;
+}
+
+.hero-announcement-modal__title-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-announcement-modal__icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: var(--gold-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.hero-announcement-modal__title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.01em;
+}
+
+.hero-announcement-modal__sub {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.hero-announcement-modal__close {
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.hero-announcement-modal__close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.08);
+}
+
+.hero-announcement-modal__body {
+  padding: 1.75rem 1.5rem;
+  background: #f8fafc;
+}
+
+.hero-announcement-modal__text {
+  background: white;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #1e293b;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.hero-announcement-modal__footer {
+  padding: 1rem 1.5rem;
+  background: white;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.hero-announcement-modal__btn {
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.hero-announcement-modal__btn--copy {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.hero-announcement-modal__btn--copy:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.hero-announcement-modal__btn--primary {
+  background: #1b5e20;
+  color: white;
+  border: none;
+}
+
+.hero-announcement-modal__btn--primary:hover {
+  background: #144818;
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

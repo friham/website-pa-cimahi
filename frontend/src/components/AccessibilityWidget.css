@@ -3,31 +3,32 @@
    Non-modal Floating Panel on Right Side
    ============================================ */
 
-/* Root container */
+/* Root container - static to never trap fixed children in a local coordinate system */
 .a11y-widget-root {
-  position: relative;
+  position: static;
 }
 
 /* ============================================
    Floating Trigger Button
    ============================================ */
 
-/* Positioning: Directly above Tanya SAPA (bottom: 28px; right: 28px) */
+/* Positioning: Tepat di atas Tanya SAPA, dekat dan rapi */
 .a11y-pos-right .a11y-floating-wrapper {
   position: fixed;
   bottom: 88px;
   right: 28px;
-  z-index: 1500;
+  z-index: 9999;
 }
 
 .a11y-pos-left .a11y-floating-wrapper {
   position: fixed;
   bottom: 28px;
   left: 28px;
-  z-index: 1500;
+  z-index: 9999;
 }
 
-/* Floating Trigger Button - Golden Theme matching Tanya SAPA */
+
+/* Floating Trigger Button - Golden Theme, compact & consistent size */
 .a11y-floating-trigger {
   width: 48px;
   height: 48px;
@@ -47,6 +48,7 @@
   transition: all var(--transition-normal);
   position: relative;
   flex-shrink: 0;
+  overflow: hidden;
 }
 
 /* Hover State - Glowing Golden Halo Ring */
@@ -129,7 +131,7 @@
   position: fixed;
   bottom: 28px;
   left: 28px;
-  z-index: 1500;
+  z-index: 9999;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -154,22 +156,22 @@
    Floating Panel (Non-Modal, No backdrop blur)
    ============================================ */
 
-/* Positioning of Floating Panel on Right (Clears ACO button at bottom: 148px) */
+/* Panel membuka ke atas dari posisi button */
 .a11y-pos-right .a11y-floating-panel {
   position: fixed;
-  bottom: 208px;
+  bottom: 164px;
   right: 28px;
-  z-index: 1600;
+  z-index: 10000;
   width: 380px;
   max-width: calc(100vw - 36px);
-  max-height: calc(100vh - 225px);
+  max-height: calc(100vh - 180px);
 }
 
 .a11y-pos-left .a11y-floating-panel {
   position: fixed;
   bottom: 84px;
   left: 28px;
-  z-index: 1600;
+  z-index: 10000;
   width: 380px;
   max-width: calc(100vw - 36px);
   max-height: calc(100vh - 100px);
@@ -179,7 +181,7 @@
   position: fixed;
   bottom: 84px;
   left: 28px;
-  z-index: 1600;
+  z-index: 10000;
   width: 380px;
   max-width: calc(100vw - 36px);
   max-height: calc(100vh - 100px);
@@ -630,8 +632,23 @@
 /* Responsive tweaks */
 @media (max-width: 480px) {
   .a11y-pos-right .a11y-floating-wrapper {
-    bottom: 84px;
+    bottom: 72px;
     right: 20px;
+  }
+
+  .a11y-floating-trigger {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  .a11y-trigger-icon-wrap,
+  .a11y-svg-icon {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    min-height: 26px;
   }
 
   .a11y-pos-left .a11y-floating-wrapper {
@@ -640,12 +657,12 @@
   }
 
   .a11y-pos-right .a11y-floating-panel {
-    bottom: 180px;
+    bottom: 188px;
     right: 14px;
     left: 14px;
     width: auto;
     max-width: none;
-    max-height: calc(100vh - 195px);
+    max-height: calc(100vh - 200px);
   }
 
   .a11y-pos-left .a11y-floating-panel {

@@ -5,14 +5,14 @@
 
 .aco-floating-wrapper {
   position: fixed;
-  bottom: 148px;
-  right: 28px;
-  z-index: 1500;
+  bottom: 148px; /* SAPA(28px) + ~50px SAPA height + gap + a11y(48px) + gap */
+  right: 24px;
+  z-index: 9999;
   display: flex;
   align-items: center;
 }
 
-/* Circular Floating Button - Gold Theme */
+/* Circular Floating Button - Same size as Accessibility widget (48px) */
 .aco-floating-btn {
   width: 48px;
   height: 48px;
@@ -34,6 +34,7 @@
   text-decoration: none;
   flex-shrink: 0;
   outline: none;
+  overflow: hidden;
 }
 
 /* Hover Interaction: Scale and Gold Glow matching other buttons */
@@ -69,10 +70,10 @@
 }
 
 .aco-svg-icon {
-  width: 25px;
-  height: 25px;
-  min-width: 25px;
-  min-height: 25px;
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  min-height: 26px;
   display: block;
   stroke: currentColor;
 }
@@ -102,8 +103,8 @@
 
 @media (max-width: 480px) {
   .aco-floating-wrapper {
-    bottom: 128px;
-    right: 20px;
+    bottom: 136px;
+    right: 18px;
   }
 
   .aco-floating-btn {
@@ -111,19 +112,21 @@
     height: 44px;
     min-width: 44px;
     min-height: 44px;
+    max-width: 44px;
+    max-height: 44px;
   }
 
   .aco-icon-container {
-    width: 24px;
-    height: 24px;
-    min-width: 24px;
-    min-height: 24px;
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    min-height: 22px;
   }
 
   .aco-svg-icon {
-    width: 23px;
-    height: 23px;
-    min-width: 23px;
-    min-height: 23px;
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    min-height: 22px;
   }
 }

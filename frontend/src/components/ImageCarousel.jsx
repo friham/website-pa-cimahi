@@ -99,7 +99,7 @@ function ImageCarousel() {
     <section className="carousel-section">
       <div className="container">
         <div className="carousel-header">
-          <div className="carousel-header__badge">INORMASI PERADILAN</div>
+          <div className="carousel-header__badge">INFORMASI PERADILAN</div>
           <h2 className="carousel-header__title">Banner Informatif & Layanan Publik</h2>
         </div>
 

@@ -148,7 +148,9 @@ function KesekretariatanLayout({ title, subtitle, breadcrumb, children }) {
                         <IconComponent size={14} style={{ opacity: isActive ? 1 : 0.6, flexShrink: 0 }} />
                         <span style={{ fontSize: '0.82rem', lineHeight: 1.3 }}>{item.title}</span>
                       </div>
-                      <FaChevronRight size={10} style={{ opacity: isActive ? 1 : 0.4, flexShrink: 0 }} />
+                      {item.children && item.children.length > 0 && (
+                        <FaChevronRight size={10} style={{ opacity: isActive ? 1 : 0.4, flexShrink: 0 }} />
+                      )}
                     </Link>
                   </li>
                 );

@@ -39,29 +39,21 @@
 }
 
 .spotlight-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 1rem;
-  background: rgba(27, 94, 32, 0.08);
+  display: inline-block;
+  padding: 0;
+  background: transparent;
   color: #1b5e20;
-  border-radius: 9999px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  border-radius: 0;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 0.75rem;
-  border: 1px solid rgba(27, 94, 32, 0.2);
+  margin-bottom: 0.5rem;
+  border: none;
 }
 
 .spotlight-badge--accent {
-  background: rgba(13, 148, 136, 0.1);
   color: #0f766e;
-  border-color: rgba(13, 148, 136, 0.25);
-}
-
-.spotlight-badge__icon {
-  font-size: 0.9rem;
 }
 
 .spotlight-title {
